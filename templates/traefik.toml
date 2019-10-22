@@ -22,24 +22,28 @@ address = ":443"
 [entryPoints.https.tls]
 MinVersion = "VersionTLS12"
 CipherSuites = ["TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256","TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"]
+[entryPoints.https.tls.certificates]
+certFile = "/craig.com.pem"
+keyFile = "/craig.com.key"
+
 [entryPoints.monitor]
 address = ":8081"
 
 [retry]
 
-[acme]
-acmeLogging = true
-email = "{{email.stdout}}"
-storage = "/etc/traefik/acme/acme.json"
-entryPoint = "https"
-[acme.dnsChallenge]
-provider = "{{provider.stdout}}"
-delayBeforeCheck = "{{delaycheck.stdout}}"
+#[acme]
+#acmeLogging = true
+#email = "misterpcraig@gmail.com"
+#storage = "/etc/traefik/acme/acme.json"
+#entryPoint = "https"
+#[acme.dnsChallenge]
+#provider = "cloudflare"
+#delayBeforeCheck = "60"
 
-[[acme.domains]]
-main = "{{domain.stdout}}"
-[[acme.domains]]
-main = "*.{{domain.stdout}}"
+#[[acme.domains]]
+#main = "craigfam.com"
+#[[acme.domains]]
+#main = "*.craigfam.com"
 
 [backends]
 ## Cockpit Backend
@@ -53,11 +57,11 @@ url = "https://127.0.0.1:9090"
 backend = "cockpit"
 passHostHeader = true
 [frontends.cockpit.routes.cockpit]
-rule = "Host:cockpit.{{domain.stdout}}"
+rule = "Host:cockpit.craigfam.com"
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "{{domain.stdout}}"
+domain = "craigfam.com"
 watch = true
 exposedbydefault = false
 network = "plexguide"
