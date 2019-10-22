@@ -53,20 +53,20 @@
         owner: '1000'
         group: '1000'
 
-    - name: Check acme.json exists
-      stat:
-        path: '/opt/appdata/traefik/acme/acme.json'
-      register: acme_json
+  #  - name: Check acme.json exists
+  #    stat:
+  #      path: '/opt/appdata/traefik/acme/acme.json'
+  #    register: acme_json
 
-    - name: Installing ACME
-      template:
-        src: acme.json
-        dest: /opt/appdata/traefik/acme/acme.json
-        force: yes
-        mode: 0600
-        owner: '1000'
-        group: '1000'
-      when: acme_json.stat.exists == False
+ #   - name: Installing ACME
+ #     template:
+ #       src: acme.json
+ #      dest: /opt/appdata/traefik/acme/acme.json
+ #       force: yes
+ #       mode: 0600
+ #       owner: '1000'
+ #       group: '1000'
+ #     when: acme_json.stat.exists == False
     # MAIN #####################################################################
     - name: Deploy Traefik
       docker_container:
