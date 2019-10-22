@@ -29,7 +29,7 @@ keyFile = "/craig.com.key"
 [entryPoints.monitor]
 address = ":8081"
 
-[retry]
+#[retry]
 
 #[acme]
 #acmeLogging = true
