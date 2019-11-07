@@ -48,7 +48,7 @@ address = ":8081"
 [backends]
   [backends.guacamole]
     [backends.gucacamole.servers.gucacamole]
-       url = "192.168.1.31:9000" (This could be http or https depending on service)
+       url = "192.168.1.31:9000"
        weight=0
 
 [frontends]
