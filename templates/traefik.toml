@@ -47,18 +47,27 @@ address = ":8081"
 
 [backends]
 ## Cockpit Backend
-[backends.cockpit]
-[backends.cockpit.servers.server]
-url = "https://127.0.0.1:9090"
+  [backends.cockpit]
+    [backends.cockpit.servers.server]
+      url = "https://127.0.0.1:9090"
+  
+  [backends.backend-grafana]
+    [backends.backend-grafana.servers]
+      [backends.backend-grafana.servers.server-grafana-ext]
+        url = "http://192.168.1.31:9090"
+        weight = 0
 
 [frontends]
 ## Cockpit Frontend
-[frontends.cockpit]
-backend = "cockpit"
-passHostHeader = true
-[frontends.cockpit.routes.cockpit]
-rule = "Host:cockpit.craigfam.com"
-
+  [frontends.cockpit]
+    backend = "cockpit"
+    passHostHeader = true
+  [frontends.cockpit.routes.cockpit]
+     rule = "Host:cockpit.craigfam.com"
+     
+   [frontends.frontend-grafana.routes]
+        [frontends.frontend-grafana.routes.route-grafana-ext]
+        rule = "Host:remote.craigfam.com"
 [docker]
 endpoint = "unix:///var/run/docker.sock"
 domain = "craigfam.com"
