@@ -82,8 +82,8 @@
           - /etc/localtime:/etc/localtime:ro
           - /opt/appdata/traefik/traefik.toml:/etc/traefik/traefik.toml:ro
           - /opt/appdata/traefik/acme:/etc/traefik/acme
-          - /home/patrick/certs/craig.com.key:/craig.com.key
-          - /home/patrick/certs/craig.com.pem:/craig.com.pem
+          - /home/docker/certs/cert.pem:/cert.key
+          - /home/docker/certs/cert.pem:/cert.pem
         restart_policy: unless-stopped
         state: started
         networks:
