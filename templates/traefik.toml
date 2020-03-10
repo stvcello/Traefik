@@ -23,8 +23,8 @@ address = ":443"
 MinVersion = "VersionTLS12"
 CipherSuites = ["TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384","TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256","TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256"]
 [[entryPoints.https.tls.certificates]]
-certFile = "/craig.com.pem"
-keyFile = "/craig.com.key"
+certFile = "/cert.pem"
+keyFile = "/cert.key"
 
 [entryPoints.monitor]
 address = ":8081"
@@ -33,7 +33,7 @@ address = ":8081"
 
 #[acme]
 #acmeLogging = true
-#email = "misterpcraig@gmail.com"
+#email = "stvcello@yahoo.com"
 #storage = "/etc/traefik/acme/acme.json"
 #entryPoint = "https"
 #[acme.dnsChallenge]
@@ -41,26 +41,13 @@ address = ":8081"
 #delayBeforeCheck = "60"
 
 #[[acme.domains]]
-#main = "craigfam.com"
+#main = "thecello.site"
 #[[acme.domains]]
-#main = "*.craigfam.com"
-
-[backends]
-  [backends.guacamole]
-    [backends.gucacamole.servers.gucacamole]
-       url = "http://192.168.1.31:9000"
-       weight=0
-
-[frontends]
-  [frontends.guacamole]
-      backend = "guacamole"
-      passHostHeader = true
-        [frontends.guacamole.routes.guacamole]
-          rule = "Host:remote.craigfam.com"
+#main = "*.thecello.site"
           
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "craigfam.com"
+domain = "thecello.site"
 watch = true
 exposedbydefault = false
 network = "plexguide"
